@@ -51,6 +51,13 @@ let currentSelectedProduct = null;
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
     loadCart();
+    displayCart();
+    
+    // Make cart button functional
+    document.querySelector('.cart-icon').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
+    });
 });
 
 // Load products into the grid
@@ -152,6 +159,7 @@ function addToCart() {
     }
     
     saveCart();
+    displayCart(); // Update cart display immediately
     alert(`${currentSelectedProduct.name} added to cart!`);
     console.log('Cart updated:', cart);
 }
@@ -209,6 +217,100 @@ window.addEventListener('scroll', function() {
     if (hero && scrollTop < hero.offsetHeight) {
         hero.style.backgroundPosition = `0 ${scrollTop * 0.5}px`;
     }
+});
+
+// Cart display and management functions
+function displayCart() {
+    const cartItems = document.getElementById('cartItems');
+    const cartSummary = document.getElementById('cartSummary');
+    
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="empty-cart">Your cart is empty. Add some products to get started!</p>';
+        cartSummary.style.display = 'none';
+        return;
+    }
+    
+    cartSummary.style.display = 'block';
+    
+    cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-image">${item.emoji}</div>
+            <div class="cart-item-info">
+                <h4>${item.name}</h4>
+                <p>${item.description}</p>
+            </div>
+            <div class="cart-item-quantity">
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                <span>${item.quantity}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+            </div>
+            <div class="cart-item-price">${item.price}</div>
+            <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+        </div>
+    `).join('');
+    
+    updateCartTotal();
+}
+
+function updateQuantity(productId, newQuantity) {
+    if (newQuantity <= 0) {
+        removeFromCart(productId);
+        return;
+    }
+    
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        item.quantity = newQuantity;
+        saveCart();
+        displayCart();
+    }
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+    displayCart();
+}
+
+function updateCartTotal() {
+    const total = cart.reduce((sum, item) => {
+        const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+        return sum + (price * item.quantity);
+    }, 0);
+    
+    document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    const total = cart.reduce((sum, item) => {
+        const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+        return sum + (price * item.quantity);
+    }, 0);
+    
+    alert(`Thank you for your purchase!\n\nTotal: $${total.toFixed(2)}\n\nYour order has been placed and will be processed shortly.`);
+    
+    cart = [];
+    saveCart();
+    displayCart();
+    document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Make cart button functional
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    loadCart();
+    displayCart(); // Add this to show cart on page load
+});
+
+// Update the cart icon click to scroll to cart section
+document.querySelector('.cart-icon').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });
 });
 
 // Lo
