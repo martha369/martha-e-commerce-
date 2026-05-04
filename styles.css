@@ -84,7 +84,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.85), rgba(236, 72, 153, 0.85)), 
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(236, 72, 153, 0.4)), 
                 url('https://images.unsplash.com/photo-1551931386-f8ca038ad6ee?w=1200&h=600&fit=crop') center/cover no-repeat;
     color: white;
     padding: 100px 20px;
