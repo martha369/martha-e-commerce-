@@ -90,13 +90,11 @@ function selectProductForAR(productId) {
         </div>
     `;
     
-    // Scroll to AR section
     document.getElementById('ar-section').scrollIntoView({ behavior: 'smooth' });
     
     console.log('Product selected for AR:', product);
 }
 
-// Start AR experience (placeholder)
 function startAR() {
     if (!currentSelectedProduct) {
         alert('Please select a product first');
@@ -117,8 +115,6 @@ function startAR() {
     
     alert(`AR Preview Started for ${currentSelectedProduct.name}!\n\nUse your mouse to interact:\n- Click and drag to rotate\n- Scroll to zoom\n- Arrow keys to position`);
 }
-
-// Reset AR view
 function resetAR() {
     if (!currentSelectedProduct) {
         alert('Please select a product first');
@@ -138,7 +134,6 @@ function resetAR() {
     console.log('AR view reset');
 }
 
-// Add product to cart
 function addToCart() {
     if (!currentSelectedProduct) {
         alert('Please select a product first');
@@ -161,13 +156,11 @@ function addToCart() {
     console.log('Cart updated:', cart);
 }
 
-// Save cart to localStorage
 function saveCart() {
     localStorage.setItem('arshop-cart', JSON.stringify(cart));
     updateCartCount();
 }
 
-// Load cart from localStorage
 function loadCart() {
     const savedCart = localStorage.getItem('arshop-cart');
     if (savedCart) {
@@ -176,19 +169,15 @@ function loadCart() {
     }
 }
 
-// Update cart count display
 function updateCartCount() {
     const cartIcon = document.querySelector('.cart-icon');
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartIcon.textContent = `🛒 Cart (${totalItems})`;
 }
 
-// Scroll to products section
 function scrollToProducts() {
     document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
 }
-
-// Handle contact form submission
 function handleContactForm(event) {
     event.preventDefault();
     
@@ -199,14 +188,10 @@ function handleContactForm(event) {
     
     console.log('Contact form submitted:', { name, email, message });
     
-    // Show success message
     alert(`Thank you for contacting us, ${name}! We'll get back to you soon.`);
     
-    // Reset form
     form.reset();
 }
-
-// Add keyboard shortcuts
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         console.log('Escape pressed - could close AR view or modal');
@@ -217,17 +202,15 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Add smooth scroll animation
 window.addEventListener('scroll', function() {
     const scrollTop = window.scrollY;
     
-    // Add parallax effect to hero section (subtle)
     const hero = document.querySelector('.hero');
     if (hero && scrollTop < hero.offsetHeight) {
         hero.style.backgroundPosition = `0 ${scrollTop * 0.5}px`;
     }
 });
 
-// Log initial state
+// Lo
 console.log('ARShop loaded successfully!');
 console.log('Available products:', products);
