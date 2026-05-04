@@ -2,45 +2,45 @@
 const products = [
     {
         id: 1,
-        name: "Modern Chair",
-        price: "$299.99",
-        emoji: "🪑",
-        description: "Elegant and comfortable modern chair for any room"
+        name: "Smartphone Pro",
+        price: "$899",
+        emoji: "📱",
+        description: "Latest smartphone with AR capabilities"
     },
     {
         id: 2,
-        name: "Desk Lamp",
-        price: "$79.99",
-        emoji: "💡",
-        description: "Bright LED desk lamp with adjustable brightness"
+        name: "Gaming Laptop",
+        price: "$1,299",
+        emoji: "💻",
+        description: "High-performance laptop for gaming and work"
     },
     {
         id: 3,
-        name: "Plant Pot",
-        price: "$49.99",
-        emoji: "🪴",
-        description: "Decorative ceramic pot for indoor plants"
+        name: "Wireless Speaker",
+        price: "$199",
+        emoji: "🔊",
+        description: "Premium sound quality with AR placement"
     },
     {
         id: 4,
-        name: "Picture Frame",
-        price: "$39.99",
-        emoji: "🖼️",
-        description: "Modern frame perfect for any artwork"
+        name: "AR Headphones",
+        price: "$349",
+        emoji: "🎧",
+        description: "Immersive audio with augmented reality features"
     },
     {
         id: 5,
-        name: "Coffee Table",
-        price: "$199.99",
-        emoji: "☕",
-        description: "Minimalist coffee table for contemporary homes"
+        name: "Tablet Pro",
+        price: "$649",
+        emoji: "📱",
+        description: "Versatile tablet for work and entertainment"
     },
     {
         id: 6,
-        name: "Wall Clock",
-        price: "$59.99",
-        emoji: "⏰",
-        description: "Stylish wall clock with silent mechanism"
+        name: "Smart Watch",
+        price: "$399",
+        emoji: "⌚",
+        description: "Stay connected with AR notifications"
     }
 ];
 
